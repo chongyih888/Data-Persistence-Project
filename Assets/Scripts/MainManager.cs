@@ -18,6 +18,8 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+    private MainUIHandler mainUIHandler;
+
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        mainUIHandler = GameObject.Find("Canvas").GetComponent<MainUIHandler>();
     }
 
     private void Update()
@@ -72,5 +76,13 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        if(m_Points > ValueManager.Instance.highScore)
+        {
+            mainUIHandler.nameOfPlayer = ValueManager.Instance.playerName;
+            ValueManager.Instance.highScore = m_Points;
+
+            mainUIHandler.DisplayHighScoreText();
+        }
     }
 }
