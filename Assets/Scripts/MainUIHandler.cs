@@ -15,7 +15,7 @@ public class MainUIHandler : MonoBehaviour
     {
         if (ValueManager.Instance.highScore > 0)
         {
-            nameOfPlayer = ValueManager.Instance.playerName;
+            nameOfPlayer = ValueManager.Instance.savedPlayerName;
             
         }else
         {

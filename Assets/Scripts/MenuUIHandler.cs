@@ -13,6 +13,7 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inputField.text = ValueManager.Instance.playerName;
         DisplayText();
     }
 

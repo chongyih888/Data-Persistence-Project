@@ -32,7 +32,7 @@ public class MainManager : MonoBehaviour
         {
             for (int x = 0; x < perLine; ++x)
             {
-                Vector3 position = new Vector3(-1.5f + step * x, 2.5f + i * 0.3f, 0);
+                Vector3 position = new Vector3(-1.5f + step * x, 1.5f + i * 0.3f, 0);
                 var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
@@ -83,6 +83,8 @@ public class MainManager : MonoBehaviour
             ValueManager.Instance.highScore = m_Points;
 
             mainUIHandler.DisplayHighScoreText();
+
+            ValueManager.Instance.SaveInfo();
         }
     }
 }
