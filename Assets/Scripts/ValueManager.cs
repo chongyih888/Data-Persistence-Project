@@ -13,7 +13,8 @@ public class ValueManager : MonoBehaviour
 
     private void Awake()
     {
-        
+      
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -71,4 +72,6 @@ public class ValueManager : MonoBehaviour
     {
         
     }
+      
+     
 }
