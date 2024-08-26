@@ -27,8 +27,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void StartNew()
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
+        
         SceneManager.LoadScene(1);
     }
 

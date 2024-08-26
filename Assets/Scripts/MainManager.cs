@@ -20,10 +20,14 @@ public class MainManager : MonoBehaviour
 
     private MainUIHandler mainUIHandler;
 
+    private AudioSource audioSource;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         const float step = 0.50f;
         int perLine = 6;
         //int perLine = Mathf.FloorToInt(4.0f / step);
@@ -33,7 +37,7 @@ public class MainManager : MonoBehaviour
         {
             for (int x = 0; x < perLine; ++x)
             {
-                Vector3 position = new Vector3(-1.3f + step * x, 1.65f + i * 0.2f, 0);
+                Vector3 position = new Vector3(-1.3f + step * x, 1.95f + i * 0.2f, 0);
                 var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
@@ -63,6 +67,7 @@ public class MainManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                mainUIHandler.DisplayHighScoreText();
             }
         }
     }
@@ -75,6 +80,9 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        audioSource.Play();
+       
+
         m_GameOver = true;
         GameOverText.SetActive(true);
 
@@ -86,6 +94,7 @@ public class MainManager : MonoBehaviour
             mainUIHandler.DisplayHighScoreText();
 
             ValueManager.Instance.SaveInfo();
+                        
         }
     }
 }

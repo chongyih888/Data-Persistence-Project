@@ -10,8 +10,13 @@ public class Brick : MonoBehaviour
     
     public int PointValue;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip audioClip; 
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         var renderer = GetComponentInChildren<Renderer>();
 
         MaterialPropertyBlock block = new MaterialPropertyBlock();
@@ -35,6 +40,11 @@ public class Brick : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if(other.gameObject.CompareTag("Ball"))
+        {
+            audioSource.PlayOneShot(audioClip);
+        }
+
         onDestroyed.Invoke(PointValue);
         
         //slight delay to be sure the ball have time to bounce

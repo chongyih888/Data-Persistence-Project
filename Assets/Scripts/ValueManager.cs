@@ -9,18 +9,18 @@ public class ValueManager : MonoBehaviour
 
     public string playerName = null;
     public int highScore = 0;
-    public string savedPlayerName;
+    public string savedPlayerName = null;
 
     private void Awake()
     {
-      
+        
 
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-       
+
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -64,14 +64,13 @@ public class ValueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-      
-     
+    
 }
